@@ -2,23 +2,32 @@ from tkinter import *
 
 quadro = Tk ()
 
+#configurações da janela
 quadro.title('Calculadora de IMC')
 quadro.geometry('650x150')
 quadro.configure(bg='light blue')
 
+#rótulos e estilizações 
 peso = Label(quadro, text='Peso (Kg):', bg='light blue')
+peso ['font'] = ('Arial', '12', 'bold')
 altura = Label(quadro, text='Altura (m):', bg='light blue')
+altura ['font'] = ('Arial', '12', 'bold')
 resultado = Label(quadro, text='Resultado:', bg='light blue')
+resultado ['font'] = ('Arial', '14', 'bold')
 
+#posições dos rótulos 
 peso.grid(row=0, column=0, padx=10, pady=10)
 altura.grid(row=1, column=0, padx=10, pady=10)
+resultado.grid(row=2, column=2, padx=5, pady=5)
 resultado.grid(row=0, column=2, padx=10, pady=10)
 
-entrada_peso = Entry(quadro, width=20)
-entrada_altura = Entry(quadro, width=20)
+#entradas 
+entrada_peso = Entry(quadro, width=10)
+entrada_altura = Entry(quadro, width=10)
 
-entrada_peso.grid(row=0, column=1, padx=10, pady=10)
-entrada_altura.grid(row=1, column=1, padx=10, pady=10)
+#posições das entradas 
+entrada_peso.grid(row=0, column=1, padx=10, pady=5)
+entrada_altura.grid(row=1, column=1, padx=10, pady=5)
 
 def f_principal ():
     texto1 = entrada_peso.get()
@@ -26,8 +35,10 @@ def f_principal ():
     texto2 = entrada_altura.get()
     num2 = float(texto2)
     imc = float(round(num1/(num2**2), 1))
-    exibir = Label(quadro, text=imc)  
+    exibir = Label(quadro, text=imc) 
+    exibir ['font'] = ('Arial', '12', 'bold') 
     exibir.grid(row=0, column=3, padx=10, pady=10)
+
     if imc < 18.5:
         descricao_1 = Label(quadro, text='Magreza: seu IMC é menor que 18.5')
         descricao_1.grid(row=1, column=2, padx=10, pady=10)
@@ -44,6 +55,8 @@ def f_principal ():
         descricao_5 = Label(quadro, text='Obesidade Grave Grau III: seu IMC está maior que 40.0')
         descricao_5.grid(row=1, column=2, padx=10, pady=10)
 
+
+#botão 
 botao_imc = Button(quadro, text='Calcular IMC', command=f_principal)
 botao_imc.grid(row=2, column=1, padx=10, pady=10)
 
